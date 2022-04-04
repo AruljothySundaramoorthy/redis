@@ -45,22 +45,6 @@ expressSwagger(options)
 
 // Route Definition
 app.use('', redisroute);
-
-
-
-
-app.post("/", async (req, res) => {
-    if (req.body) {
-        await redisclient.set(`Userinfo_${req.body.username}`, JSON.stringify(req.body))
-        res.send("user data saved");
-    }
-})
-
-app.get("/:key", async (req, res) => {
-    const data = await redisclient.get(req.params.key);
-    res.send(data)
-})
-
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
