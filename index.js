@@ -1,31 +1,52 @@
 
-import express from "express";
+const express = require("express");
 const app = express();
 const port = 2552;
-import { createClient } from "redis";
-import bodyParser from 'body-parser'
+var bodyParser = require('body-parser')
+
+var { redisclient } = require('./libs/redis');
+const redisroute = require('./routes/redisroute');
+
+
+const expressSwagger = require('express-swagger-generator')(app);
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
-const redisclient = createClient(); +
-    redisclient.connect()
-redisclient.on("error", (err) => {
-    console.log(err);
-})
 
-async function saveredisdata(data) {
-    try {
-        await redisclient.set(Object.keys(data)[0], JSON.stringify(Object.values(data)[0]))
-    } catch (e) {
-        console.log(e)
-    }
-}
-app.get("/", async (req, res) => {
-    const data = await redisclient.sendCommand(["keys", "*"]);
-    res.send(data)
-});
+let options = {
+    swaggerDefinition: {
+        info: {
+            description: 'Nodejs Redis API',
+            title: 'NODE REDIS',
+            version: '1.0.0',
+        },
+        host: 'localhost:2552',
+        // basePath: '/v1',
+        produces: [
+            "application/json",
+            "application/xml"
+        ],
+        schemes: ['http', 'https'],
+        // securityDefinitions: {
+        //     JWT: {
+        //         type: 'apiKey',
+        //         in: 'header',
+        //         name: 'Authorization',
+        //         description: "",
+        //     }
+        // }
+    },
+    basedir: __dirname, //app absolute path
+    files: ['./routes/**/*.js'] //Path to the API handle folder
+};
+expressSwagger(options)
+
+// Route Definition
+app.use('', redisroute);
+
+
 
 
 app.post("/", async (req, res) => {
