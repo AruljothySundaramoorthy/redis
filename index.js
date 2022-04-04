@@ -22,8 +22,9 @@ async function saveredisdata(data) {
         console.log(e)
     }
 }
-app.get("/", (req, res) => {
-    res.send("Hello World!");
+app.get("/", async (req, res) => {
+    const data = await redisclient.sendCommand(["keys", "*"]);
+    res.send(data)
 });
 
 
@@ -32,6 +33,11 @@ app.post("/", async (req, res) => {
         await redisclient.set(`Userinfo_${req.body.username}`, JSON.stringify(req.body))
         res.send("user data saved");
     }
+})
+
+app.get("/:key", async (req, res) => {
+    const data = await redisclient.get(req.params.key);
+    res.send(data)
 })
 
 app.listen(port, () => {
