@@ -15,5 +15,23 @@ module.exports = {
     getRedisDayaByKeys: async (req, res) => {
         const data = await redisclient.get(req.params.key);
         res.send(data)
+    },
+    getUsersList: async (req, res) => {
+        const data = await redisclient.aclUsers();
+        res.send(data)
+    },
+    getUsersListwithACL: async (req, res) => {
+        const data = await redisclient.aclList();
+        res.send(data)
+    },
+    createNewUser: async (req, res) => {
+        try {
+            const data = await redisclient.ACL_SETUSER(req.params.username, ['+get', '+set']);
+
+            res.send(data)
+        } catch (e) {
+
+            return res.status(500).send(e.message)
+        }
     }
 }
