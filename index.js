@@ -10,6 +10,15 @@ const redisroute = require('./routes/redisroute');
 
 const expressSwagger = require('express-swagger-generator')(app);
 
+var cors = require('cors')
+app.use(cors())
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    next();
+})
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 

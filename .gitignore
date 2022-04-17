@@ -156,3 +156,5 @@ package-lock.json
 .env
 *.bak
 *.orig
+
+mockdata/

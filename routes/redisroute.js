@@ -48,6 +48,18 @@ redisroute.post(
  */
 redisroute.get(`/`, rediscontoller.getAllKeys);
 
+
+/**
+ * RedisData - BuildMockdata
+ * @route GET /buildmockdata
+ * @group RedisData  
+ * @produces application/json application/xml
+ * @consumes application/json application/xml
+ * @returns {response.model} 200 - {"data": true}
+ * @returns {response.model} 400 - Bad request  
+ * @returns {response.model} 500 - Server Error 
+ */
+redisroute.get(`/buildmockdata`, rediscontoller.buildmockdata);
 /**
  * RedisData - Get Redis Data by Keys
  * @route GET /{key}
