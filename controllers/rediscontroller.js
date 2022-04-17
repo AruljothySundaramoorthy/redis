@@ -86,6 +86,7 @@ try {
                     deviceid: device.deviceid,
                     blockid: device.blockid,
                     devicename: device.devicename,
+                    devicetype: device.devicetypeid,
                     devicedisplayname: device.devicedisplayname,
                     parameters: tags,
                 };
