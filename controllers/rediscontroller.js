@@ -7,6 +7,10 @@ try {
     const lodash = require('lodash');
 
     module.exports = {
+        CleanRedis: async (req, res) => {
+            await redisclient.flushAll();
+            res.send("Redis Cleaned");
+        },
         saveRedisData: async (req, res) => {
             if (req.body) {
                 await redisclient.set(`Userinfo_${req.body.key}`, JSON.stringify(req.body))

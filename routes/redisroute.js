@@ -37,8 +37,8 @@ redisroute.post(
 );
 
 /**
- * RedisData - Get Redis Keys
- * @route GET /getallkeys
+ * RedisData - Remove all redis information
+ * @route GET /clean
  * @group RedisData 
  * @produces application/json application/xml
  * @consumes application/json application/xml
@@ -46,8 +46,7 @@ redisroute.post(
  * @returns {response.model} 400 - Bad request  
  * @returns {response.model} 500 - Server Error 
  */
-redisroute.get(`/getallkeys`, rediscontoller.getAllKeys);
-
+redisroute.get(`/clean`, rediscontoller.CleanRedis);
 
 /**
  * RedisData - BuildMockdata
@@ -60,6 +59,19 @@ redisroute.get(`/getallkeys`, rediscontoller.getAllKeys);
  * @returns {response.model} 500 - Server Error 
  */
 redisroute.get(`/buildmockdata`, rediscontoller.buildmockdata);
+/**
+ * RedisData - Get Redis Keys
+ * @route GET /getallkeys
+ * @group RedisData 
+ * @produces application/json application/xml
+ * @consumes application/json application/xml
+ * @returns {response.model} 200 - {"data": true}
+ * @returns {response.model} 400 - Bad request  
+ * @returns {response.model} 500 - Server Error 
+ */
+redisroute.get(`/getallkeys`, rediscontoller.getAllKeys);
+
+
 /**
  * RedisData - Get Redis Data by Keys
  * @route GET /data/{key}
