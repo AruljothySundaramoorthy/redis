@@ -86,9 +86,9 @@ redisroute.get(`/getallkeys`, rediscontoller.getAllKeys);
 redisroute.get(`/data/:key`, rediscontoller.getRedisDayaByKeys);
 
 /**
- * RedisData - Get User Info
+ * Users - Get User Info
  * @route GET /users
- * @group RedisData 
+ * @group Users 
  * @produces application/json application/xml
  * @consumes application/json application/xml
  * @returns {response.model} 200 - {"data": true}
@@ -97,9 +97,9 @@ redisroute.get(`/data/:key`, rediscontoller.getRedisDayaByKeys);
  */
 redisroute.get(`/users`, rediscontoller.getUsersList);
 /**
- * RedisData - Get User Info with access controle
+ * Users - Get User Info with access controle
  * @route GET /users/acl
- * @group RedisData 
+ * @group Users 
  * @produces application/json application/xml
  * @consumes application/json application/xml
  * @returns {response.model} 200 - {"data": true}
@@ -108,9 +108,9 @@ redisroute.get(`/users`, rediscontoller.getUsersList);
  */
 redisroute.get(`/users/acl`, rediscontoller.getUsersListwithACL);
 /**
- * RedisData - Add user
+ * Users - Add user
  * @route POST /user/adduser/{username}
- * @group RedisData
+ * @group Users
  * @param {string} username.path.required
  * @produces application/json application/xml
  * @consumes application/json application/xml
