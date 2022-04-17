@@ -6,7 +6,7 @@ var bodyParser = require('body-parser')
 
 var { redisclient } = require('./libs/redis');
 const redisroute = require('./routes/redisroute');
-
+const chalk = require('chalk');
 
 const expressSwagger = require('express-swagger-generator')(app);
 
@@ -55,5 +55,7 @@ expressSwagger(options)
 // Route Definition
 app.use('', redisroute);
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`Redis app listening on port ${port}`);
+    console.log(chalk.redBright.bgWhite.bold('use the URL to explore :  http://localhost:2552/api-docs'));
+    // log(chalk.blue.bgRed.bold('Hello world!'));
 });
