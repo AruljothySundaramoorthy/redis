@@ -20,6 +20,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-swagger-generator": "^1.1.17",
+    "file-stream-rotator": "^0.6.1",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "redis": "^4.0.4"
   }
